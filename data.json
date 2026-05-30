@@ -1,0 +1,195 @@
+{
+  "updated": "2026-05-31 01:33:14",
+  "candidates": [
+    {
+      "ticker": "1303.TW",
+      "name": "南亞",
+      "action": "☕持有",
+      "price": 98.0999984741211,
+      "change_pct": 0,
+      "regime": "多頭",
+      "dmpi": 7.420787899371941,
+      "rsi": 58.41836420896098,
+      "score": 98.02503699934073
+    },
+    {
+      "ticker": "3706.TW",
+      "name": "神達",
+      "action": "🔥新買",
+      "price": 88.80000305175781,
+      "change_pct": 0,
+      "regime": "多頭",
+      "dmpi": 9.277527021207916,
+      "rsi": 53.649635575352505,
+      "score": 97.86123648939605
+    },
+    {
+      "ticker": "4912.TW",
+      "name": "聯德控股-KY",
+      "action": "☕持有",
+      "price": 115.0,
+      "change_pct": 0,
+      "regime": "多頭",
+      "dmpi": 7.699621899721428,
+      "rsi": 69.47162615027909,
+      "score": 95.93192557434399
+    },
+    {
+      "ticker": "1605.TW",
+      "name": "華新",
+      "action": "☕持有",
+      "price": 38.75,
+      "change_pct": 0,
+      "regime": "多頭",
+      "dmpi": 5.986313323889099,
+      "rsi": 63.06620286468118,
+      "score": 95.09819597830807
+    },
+    {
+      "ticker": "2330.TW",
+      "name": "台積電",
+      "action": "☕持有",
+      "price": 2355.0,
+      "change_pct": 0,
+      "regime": "盤整",
+      "dmpi": -4.829230460877171,
+      "rsi": 63.33333331362962,
+      "score": 95.08538476956141
+    }
+  ],
+  "portfolio": [
+    {
+      "ticker": "2337.TW",
+      "name": "旺宏",
+      "close": 166.5,
+      "cost": 0,
+      "qty": 0,
+      "pnl": 0,
+      "pnl_pct": 0,
+      "regime": "盤整",
+      "dmpi": 0.1,
+      "rsi": 54.1,
+      "has_sell": false
+    },
+    {
+      "ticker": "2395.TW",
+      "name": "研華",
+      "close": 495.0,
+      "cost": 0,
+      "qty": 0,
+      "pnl": 0,
+      "pnl_pct": 0,
+      "regime": "多頭",
+      "dmpi": -21.3,
+      "rsi": 56.2,
+      "has_sell": true
+    },
+    {
+      "ticker": "2520.TW",
+      "name": "冠德",
+      "close": 29.850000381469727,
+      "cost": 0,
+      "qty": 0,
+      "pnl": 0,
+      "pnl_pct": 0,
+      "regime": "空頭",
+      "dmpi": -38.7,
+      "rsi": 38.8,
+      "has_sell": true
+    },
+    {
+      "ticker": "2891.TW",
+      "name": "中信金",
+      "close": 60.5,
+      "cost": 0,
+      "qty": 0,
+      "pnl": 0,
+      "pnl_pct": 0,
+      "regime": "多頭",
+      "dmpi": -4.5,
+      "rsi": 75.5,
+      "has_sell": false
+    },
+    {
+      "ticker": "3576.TW",
+      "name": "聯合再生",
+      "close": 18.350000381469727,
+      "cost": 0,
+      "qty": 0,
+      "pnl": 0,
+      "pnl_pct": 0,
+      "regime": "多頭",
+      "dmpi": -6.5,
+      "rsi": 56.7,
+      "has_sell": false
+    },
+    {
+      "ticker": "3605.TW",
+      "name": "宏致",
+      "close": 79.19999694824219,
+      "cost": 0,
+      "qty": 0,
+      "pnl": 0,
+      "pnl_pct": 0,
+      "regime": "盤整",
+      "dmpi": -10.9,
+      "rsi": 41.7,
+      "has_sell": false
+    },
+    {
+      "ticker": "2317.TW",
+      "name": "鴻海",
+      "close": 289.0,
+      "cost": 0,
+      "qty": 0,
+      "pnl": 0,
+      "pnl_pct": 0,
+      "regime": "多頭",
+      "dmpi": 34.6,
+      "rsi": 74.0,
+      "has_sell": true
+    },
+    {
+      "ticker": "2206.TW",
+      "name": "三陽工業",
+      "close": 60.599998474121094,
+      "cost": 0,
+      "qty": 0,
+      "pnl": 0,
+      "pnl_pct": 0,
+      "regime": "多頭",
+      "dmpi": 69.9,
+      "rsi": 69.2,
+      "has_sell": false
+    }
+  ],
+  "sell_alerts": [
+    {
+      "ticker": "2317.TW",
+      "name": "鴻海",
+      "regime": "多頭轉弱",
+      "dmpi": 34.6,
+      "rsi": 74.0,
+      "close": 289.0
+    },
+    {
+      "ticker": "2395.TW",
+      "name": "研華",
+      "regime": "多頭轉弱",
+      "dmpi": -21.3,
+      "rsi": 56.2,
+      "close": 495.0
+    },
+    {
+      "ticker": "2520.TW",
+      "name": "冠德",
+      "regime": "空頭",
+      "dmpi": -38.7,
+      "rsi": 38.8,
+      "close": 29.850000381469727
+    }
+  ],
+  "total_candidates": 66,
+  "total_portfolio": 8,
+  "total_sell_alerts": 3
+}

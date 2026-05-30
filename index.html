@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ColaPig 每日掃描</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg-base: #0a0a0f;
+      --bg-surface: #111118;
+      --bg-elevated: #1a1a24;
+      --border: #2a2a3a;
+      --accent-buy: #ff4d6a;
+      --accent-sell: #00e5a0;
+      --accent-hold: #f0a030;
+      --accent-gold: #f5c842;
+    }
+    body { background: var(--bg-base); color: #e0e0e0; font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif; }
+    .card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; }
+    .regime-bull { color: #ff4d6a; }
+    .regime-bear { color: #00e5a0; }
+    .regime-flat { color: #f0a030; }
+    .score-high { color: #f5c842; }
+    .loading { animation: spin 1s linear infinite; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .fade-in { animation: fadeIn 0.3s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-6">
+  <div class="max-w-3xl mx-auto space-y-4">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-xl font-bold text-[#00d4ff]">🏠 ColaPig 每日掃描</h1>
+        <p class="text-xs text-gray-500" id="lastUpdate">按下更新按鈕抓取最新資料</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs text-gray-500" id="clock">--:--:--</span>
+        <button onclick="refreshAll()" id="refreshBtn"
+          class="bg-[#1a1a24] border border-[#2a2a3a] rounded-lg px-4 py-2 text-sm hover:bg-[#22222f] transition-colors flex items-center gap-2">
+          <span id="refreshIcon">🔄</span>
+          <span id="refreshText">更新</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Stock Search -->
+    <div class="card p-3">
+      <div class="flex gap-2">
+        <input type="text" id="searchInput" placeholder="輸入股票代號，如 2330.TW"
+          class="flex-1 bg-[#0a0a0f] border border-[#2a2a3a] rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#00d4ff]"
+          onkeypress="if(event.key==='Enter')searchStock()">
+        <button onclick="searchStock()"
+          class="bg-[#00d4ff] text-black rounded-lg px-4 py-2 text-sm font-medium hover:bg-[#00b8e0] transition-colors">
+          查詢
+        </button>
+      </div>
+      <div id="searchResult" class="mt-3 hidden"></div>
+    </div>
+
+    <!-- Top 5 Candidates -->
+    <div class="card p-4">
+      <h2 class="text-sm font-semibold text-gray-400 mb-3">📊 買候選 Top 5</h2>
+      <div id="candidates" class="space-y-2">
+        <div class="text-gray-500 text-sm text-center py-4">按下更新按鈕抓取資料</div>
+      </div>
+    </div>
+
+    <!-- Portfolio Status -->
+    <div class="card p-4">
+      <h2 class="text-sm font-semibold text-gray-400 mb-3" id="portfolioTitle">💼 持股狀態</h2>
+      <div id="portfolio" class="space-y-2">
+        <div class="text-gray-500 text-sm text-center py-4">按下更新按鈕抓取資料</div>
+      </div>
+    </div>
+
+    <!-- Portfolio Sell Alerts -->
+    <div class="card p-4 border-[#ff4d6a]/30 hidden" id="sellAlertCard">
+      <h2 class="text-sm font-semibold text-[#ff4d6a] mb-3">⚠️ 持股賣訊</h2>
+      <div id="sellAlerts" class="space-y-2"></div>
+    </div>
+
+    <!-- Error/Status Message -->
+    <div id="statusMsg" class="hidden"></div>
+
+  </div>
+
+  <script>
+    const API = 'http://localhost:8000';
+    let portfolioTickers = new Set();
+
+    // Clock
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('clock').textContent = now.toLocaleTimeString('zh-TW');
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Regime emoji + color
+    function regimeInfo(regime) {
+      switch (regime) {
+        case '多頭': return { emoji: '🟢', cls: 'regime-bull' };
+        case '空頭': return { emoji: '🔴', cls: 'regime-bear' };
+        default: return { emoji: '🟡', cls: 'regime-flat' };
+      }
+    }
+
+    // Action emoji
+    function actionIcon(action) {
+      if (action.includes('🔥')) return '🔥';
+      if (action.includes('🧹')) return '🧹';
+      if (action.includes('☕持有')) return '☕';
+      return '☕';
+    }
+
+    // Format number
+    function fmt(n, decimals = 2) {
+      return typeof n === 'number' ? n.toFixed(decimals) : n;
+    }
+
+    // Refresh all data
+    async function refreshAll() {
+      const btn = document.getElementById('refreshBtn');
+      const icon = document.getElementById('refreshIcon');
+      const text = document.getElementById('refreshText');
+      btn.disabled = true;
+      icon.classList.add('loading');
+      icon.textContent = '⏳';
+      text.textContent = '載入中...';
+
+      try {
+        // Run scan first
+        const scanRes = await fetch(`${API}/api/scan`);
+        if (!scanRes.ok) throw new Error('掃描失敗');
+        const scanData = await scanRes.json();
+        const candidates = scanData.results || [];
+
+        // Get portfolio
+        const portRes = await fetch(`${API}/api/portfolio`);
+        if (!portRes.ok) throw new Error('持股讀取失敗');
+        const portData = await portRes.json();
+        const positions = portData.positions || [];
+
+        // Build portfolio ticker set
+        portfolioTickers = new Set(positions.map(p => p.ticker.toUpperCase()));
+
+        // Render
+        renderCandidates(candidates.slice(0, 5));
+        renderPortfolio(positions, candidates);
+
+        document.getElementById('lastUpdate').textContent = `更新時間：${new Date().toLocaleString('zh-TW')}`;
+        document.getElementById('statusMsg').classList.add('hidden');
+      } catch (e) {
+        showError('連線失敗：請確認 API 是否已啟動（python api/server.py）');
+      } finally {
+        btn.disabled = false;
+        icon.classList.remove('loading');
+        icon.textContent = '🔄';
+        text.textContent = '更新';
+      }
+    }
+
+    // Render Top 5 candidates
+    function renderCandidates(candidates) {
+      const el = document.getElementById('candidates');
+      if (!candidates.length) {
+        el.innerHTML = '<div class="text-gray-500 text-sm text-center py-4">今日無買候選</div>';
+        return;
+      }
+      el.innerHTML = candidates.map((c, i) => {
+        const actionEmoji = actionIcon(c.action);
+        return `
+        <div class="bg-[#1a1a24] rounded-lg p-3 flex items-center justify-between fade-in" style="animation-delay:${i*50}ms">
+          <div class="flex items-center gap-3">
+            <span class="text-lg font-bold text-gray-500">${i+1}</span>
+            <span class="text-lg">${actionEmoji}</span>
+            <div>
+              <div class="font-medium">${c.ticker} ${c.name || ''}</div>
+              <div class="text-xs text-gray-500">${c.regime} | DMPI: ${fmt(c.dmpi)} | RSI: ${fmt(c.rsi)}</div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="score-high font-bold">${fmt(c.score, 1)}</div>
+            <div class="text-xs text-gray-500">評分</div>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    // Render portfolio
+    function renderPortfolio(positions, scanResults) {
+      const el = document.getElementById('portfolio');
+      const sellAlertCard = document.getElementById('sellAlertCard');
+      const sellAlertsEl = document.getElementById('sellAlerts');
+
+      if (!positions.length) {
+        el.innerHTML = '<div class="text-gray-500 text-sm text-center py-4">目前沒有持股</div>';
+        return;
+      }
+
+      // Find sell signals in portfolio
+      const sellSet = new Set();
+      const sellItems = [];
+      for (const s of scanResults) {
+        if (s.action.includes('🧹') && portfolioTickers.has(s.ticker.toUpperCase())) {
+          sellSet.add(s.ticker.toUpperCase());
+          sellItems.push(s);
+        }
+      }
+
+      // Show sell alerts
+      if (sellItems.length) {
+        sellAlertCard.classList.remove('hidden');
+        sellAlertsEl.innerHTML = sellItems.map(s => `
+          <div class="bg-[#ff4d6a]/10 border border-[#ff4d6a]/30 rounded-lg p-3 fade-in">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">⚠️</span>
+              <span class="font-medium">${s.ticker} ${s.name || ''}</span>
+              <span class="text-xs text-[#ff4d6a]">${s.regime}</span>
+            </div>
+            <div class="text-xs text-gray-400 mt-1 pl-7">
+              DMPI: ${fmt(s.dmpi)} | RSI: ${fmt(s.rsi)} | 現價: ${fmt(s.price)}
+            </div>
+          </div>`).join('');
+      } else {
+        sellAlertCard.classList.add('hidden');
+      }
+
+      // Render positions
+      el.innerHTML = positions.map((p, i) => {
+        const ri = regimeInfo(p.regime || '盤整');
+        const hasSell = sellSet.has(p.ticker.toUpperCase());
+        const pnlColor = p.pnl >= 0 ? 'text-[#ff4d6a]' : 'text-[#00e5a0]';
+        const pnlSign = p.pnl >= 0 ? '+' : '';
+        return `
+        <div class="bg-[#1a1a24] rounded-lg p-3 flex items-center justify-between fade-in ${hasSell ? 'border border-[#ff4d6a]/30' : ''}" style="animation-delay:${i*30}ms">
+          <div class="flex items-center gap-3">
+            <span class="text-lg">${ri.emoji}</span>
+            <div>
+              <div class="font-medium flex items-center gap-1">
+                ${p.ticker} ${p.name || ''}
+                ${hasSell ? '<span class="text-xs text-[#ff4d6a]">⚠️賣訊</span>' : ''}
+              </div>
+              <div class="text-xs text-gray-500">
+                成本: ${fmt(p.cost)} | 現價: ${fmt(p.current_price)} | ${p.qty}張
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="${pnlColor} font-bold">${pnlSign}${fmt(p.pnl)}</div>
+            <div class="text-xs text-gray-500">${pnlSign}${fmt(p.pnl_pct)}%</div>
+          </div>
+        </div>`;
+      }).join('');
+
+      document.getElementById('portfolioTitle').textContent = `💼 持股狀態（共 ${positions.length} 支）`;
+    }
+
+    // Search individual stock
+    async function searchStock() {
+      const input = document.getElementById('searchInput').value.trim().toUpperCase();
+      if (!input) return;
+
+      const el = document.getElementById('searchResult');
+      el.classList.remove('hidden');
+      el.innerHTML = '<div class="text-gray-500 text-sm text-center py-4">載入中...</div>';
+
+      try {
+        const res = await fetch(`${API}/api/analyze/${encodeURIComponent(input)}?period=3mo`);
+        if (!res.ok) {
+          el.innerHTML = `<div class="text-red-400 text-sm">找不到 ${input} 的資料</div>`;
+          return;
+        }
+        const data = await res.json();
+        const ri = regimeInfo(data.regime);
+
+        el.innerHTML = `
+        <div class="bg-[#1a1a24] rounded-lg p-4 fade-in">
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <div class="font-bold text-lg">${data.ticker} ${data.name || ''}</div>
+              <div class="text-sm text-gray-500">現價: ${fmt(data.close)} | 漲跌: ${data.change_pct > 0 ? '+' : ''}${fmt(data.change_pct)}%</div>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl">${ri.emoji}</div>
+              <div class="${ri.cls} text-sm font-medium">${data.regime}</div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
+            <div class="bg-[#0a0a0f] rounded-lg p-2 text-center">
+              <div class="text-xs text-gray-500">評分</div>
+              <div class="score-high font-bold text-lg">${fmt(data.score, 1)}</div>
+            </div>
+            <div class="bg-[#0a0a0f] rounded-lg p-2 text-center">
+              <div class="text-xs text-gray-500">DMPI</div>
+              <div class="font-bold text-lg">${fmt(data.indicators.dmpi)}</div>
+            </div>
+            <div class="bg-[#0a0a0f] rounded-lg p-2 text-center">
+              <div class="text-xs text-gray-500">RSI</div>
+              <div class="font-bold text-lg">${fmt(data.indicators.rsi)}</div>
+            </div>
+            <div class="bg-[#0a0a0f] rounded-lg p-2 text-center">
+              <div class="text-xs text-gray-500">MACD</div>
+              <div class="font-bold text-lg">${fmt(data.indicators.macd, 4)}</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">${data.action.includes('🔥') ? '🔥' : data.action.includes('🧹') ? '🧹' : '☕'}</span>
+            <span class="font-medium">${data.action}</span>
+          </div>
+        </div>`;
+      } catch (e) {
+        el.innerHTML = `<div class="text-red-400 text-sm">連線失敗：${e.message}</div>`;
+      }
+    }
+
+    function showError(msg) {
+      const el = document.getElementById('statusMsg');
+      el.classList.remove('hidden');
+      el.innerHTML = `<div class="bg-red-900/30 border border-red-800 rounded-lg p-3 text-red-400 text-sm">${msg}</div>`;
+    }
+
+    // Auto-refresh on page load
+    window.addEventListener('load', () => {
+      refreshAll();
+    });
+  </script>
+</body>
+</html>

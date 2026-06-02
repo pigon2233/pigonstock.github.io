@@ -1,153 +1,140 @@
 {
-  "updated": "2026-06-01 13:11:38",
+  "updated": "2026-06-02 13:11:34",
   "candidates": [
     {
-      "ticker": "6213.TW",
-      "name": "聯茂",
+      "ticker": "3013.TW",
+      "name": "晟銘電",
       "action": "☕持有",
-      "price": 295.0,
+      "price": 133.0,
+      "change_pct": 0,
+      "regime": "多頭",
+      "dmpi": 0.12284350901136243,
+      "rsi": 73.21428553125,
+      "score": 97.56142175450569
+    },
+    {
+      "ticker": "2409.TW",
+      "name": "友達",
+      "action": "☕持有",
+      "price": 26.149999618530273,
+      "change_pct": 0,
+      "regime": "多頭",
+      "dmpi": 10.407308697063542,
+      "rsi": 69.009580854299,
+      "score": 89.59967640214099
+    },
+    {
+      "ticker": "5871.TW",
+      "name": "中租-KY",
+      "action": "☕持有",
+      "price": 114.5,
       "change_pct": 0,
       "regime": "盤整",
-      "dmpi": 7.6615246795995,
-      "rsi": 53.42960283407838,
-      "score": 98.66923766020025
+      "dmpi": 24.914133801778448,
+      "rsi": 66.66666622222223,
+      "score": 89.03696310230372
     },
     {
-      "ticker": "2609.TW",
-      "name": "陽明",
+      "ticker": "4968.TW",
+      "name": "立積",
       "action": "☕持有",
-      "price": 54.79999923706055,
+      "price": 120.0,
       "change_pct": 0,
       "regime": "多頭",
-      "dmpi": 1.363285869697675,
-      "rsi": 69.91525792821801,
-      "score": 95.52862102241676
+      "dmpi": -3.4431059829891617,
+      "rsi": 58.82352908881199,
+      "score": 87.79027505068579
     },
     {
-      "ticker": "2618.TW",
-      "name": "長榮航",
-      "action": "🔥新買",
-      "price": 37.599998474121094,
+      "ticker": "3010.TW",
+      "name": "華立",
+      "action": "☕持有",
+      "price": 140.0,
       "change_pct": 0,
       "regime": "多頭",
-      "dmpi": 6.396749757263983,
-      "rsi": 67.12327922556709,
-      "score": 93.23481879222238
-    },
-    {
-      "ticker": "2412.TW",
-      "name": "中華電",
-      "action": "☕持有",
-      "price": 141.5,
-      "change_pct": 0,
-      "regime": "多頭",
-      "dmpi": 3.4187545831257324,
-      "rsi": 63.636363231404964,
-      "score": 93.18634101284775
-    },
-    {
-      "ticker": "2880.TW",
-      "name": "華南金",
-      "action": "☕持有",
-      "price": 32.849998474121094,
-      "change_pct": 0,
-      "regime": "盤整",
-      "dmpi": 16.703294107185197,
-      "rsi": 52.05478851137482,
-      "score": 92.36364662873825
+      "dmpi": 5.3282164131508045,
+      "rsi": 62.12121185766758,
+      "score": 86.78432096755982
     }
   ],
   "portfolio": [
     {
-      "ticker": "2395.TW",
-      "name": "研華",
-      "close": 516.0,
-      "cost": 0,
-      "qty": 0,
-      "pnl": 0,
-      "pnl_pct": 0,
-      "regime": "多頭",
-      "dmpi": -13.2,
-      "rsi": 57.8,
-      "has_sell": false
-    },
-    {
       "ticker": "2603.TW",
       "name": "長榮",
-      "close": 224.5,
+      "close": 229.5,
       "cost": 0,
       "qty": 0,
       "pnl": 0,
       "pnl_pct": 0,
       "regime": "多頭",
-      "dmpi": 12.1,
-      "rsi": 58.1,
-      "has_sell": false
+      "dmpi": 32.6,
+      "rsi": 64.9,
+      "has_sell": true
     },
     {
       "ticker": "3545.TW",
       "name": "敦泰",
-      "close": 59.20000076293945,
+      "close": 59.400001525878906,
       "cost": 0,
       "qty": 0,
       "pnl": 0,
       "pnl_pct": 0,
       "regime": "盤整",
-      "dmpi": 0.1,
-      "rsi": 53.3,
+      "dmpi": -2.1,
+      "rsi": 60.7,
       "has_sell": false
     },
     {
       "ticker": "3576.TW",
       "name": "聯合再生",
-      "close": 18.399999618530273,
+      "close": 18.149999618530273,
       "cost": 0,
       "qty": 0,
       "pnl": 0,
       "pnl_pct": 0,
       "regime": "多頭",
-      "dmpi": -0.8,
-      "rsi": 55.6,
+      "dmpi": 2.2,
+      "rsi": 49.5,
       "has_sell": false
     },
     {
       "ticker": "2317.TW",
       "name": "鴻海",
-      "close": 294.5,
+      "close": 299.5,
       "cost": 0,
       "qty": 0,
       "pnl": 0,
       "pnl_pct": 0,
       "regime": "多頭",
-      "dmpi": 21.8,
-      "rsi": 77.6,
+      "dmpi": -16.4,
+      "rsi": 78.7,
       "has_sell": false
     },
     {
-      "ticker": "3706.TW",
-      "name": "神達",
-      "close": 93.4000015258789,
+      "ticker": "2880.TW",
+      "name": "華南金",
+      "close": 33.849998474121094,
       "cost": 0,
       "qty": 0,
       "pnl": 0,
       "pnl_pct": 0,
-      "regime": "多頭",
-      "dmpi": 30.2,
-      "rsi": 62.1,
-      "has_sell": true
+      "regime": "盤整",
+      "dmpi": 33.3,
+      "rsi": 56.8,
+      "has_sell": false
     }
   ],
   "sell_alerts": [
     {
-      "ticker": "3706.TW",
-      "name": "神達",
+      "ticker": "2603.TW",
+      "name": "長榮",
       "regime": "多頭轉弱",
-      "dmpi": 30.2,
-      "rsi": 62.1,
-      "close": 93.4000015258789
+      "dmpi": 34.5,
+      "rsi": 65.2,
+      "close": 230.0
     }
   ],
-  "total_candidates": 82,
-  "total_portfolio": 6,
+  "total_candidates": 64,
+  "total_portfolio": 5,
   "total_sell_alerts": 1
 }

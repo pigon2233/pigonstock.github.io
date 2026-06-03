@@ -1,76 +1,63 @@
 {
-  "updated": "2026-06-02 13:11:34",
+  "updated": "2026-06-03 13:11:20",
   "candidates": [
     {
-      "ticker": "3013.TW",
-      "name": "晟銘電",
+      "ticker": "4976.TW",
+      "name": "佳凌",
       "action": "☕持有",
-      "price": 133.0,
+      "price": 34.349998474121094,
       "change_pct": 0,
       "regime": "多頭",
-      "dmpi": 0.12284350901136243,
-      "rsi": 73.21428553125,
-      "score": 97.56142175450569
+      "dmpi": 11.38707026932904,
+      "rsi": 64.48597746595445,
+      "score": 96.80646486533547
     },
     {
-      "ticker": "2409.TW",
-      "name": "友達",
+      "ticker": "3324.TWO",
+      "name": "",
       "action": "☕持有",
-      "price": 26.149999618530273,
+      "price": 1280.0,
       "change_pct": 0,
       "regime": "多頭",
-      "dmpi": 10.407308697063542,
-      "rsi": 69.009580854299,
-      "score": 89.59967640214099
+      "dmpi": 19.945462951300303,
+      "rsi": 77.2073921749301,
+      "score": 92.52726852434985
     },
     {
-      "ticker": "5871.TW",
-      "name": "中租-KY",
+      "ticker": "1519.TW",
+      "name": "華城",
       "action": "☕持有",
-      "price": 114.5,
-      "change_pct": 0,
-      "regime": "盤整",
-      "dmpi": 24.914133801778448,
-      "rsi": 66.66666622222223,
-      "score": 89.03696310230372
-    },
-    {
-      "ticker": "4968.TW",
-      "name": "立積",
-      "action": "☕持有",
-      "price": 120.0,
+      "price": 935.0,
       "change_pct": 0,
       "regime": "多頭",
-      "dmpi": -3.4431059829891617,
-      "rsi": 58.82352908881199,
-      "score": 87.79027505068579
+      "dmpi": 22.956707744313917,
+      "rsi": 58.62068963340346,
+      "score": 91.02164612784304
     },
     {
-      "ticker": "3010.TW",
-      "name": "華立",
+      "ticker": "1605.TW",
+      "name": "華新",
       "action": "☕持有",
-      "price": 140.0,
+      "price": 43.0,
       "change_pct": 0,
       "regime": "多頭",
-      "dmpi": 5.3282164131508045,
-      "rsi": 62.12121185766758,
-      "score": 86.78432096755982
+      "dmpi": 21.332823785190396,
+      "rsi": 71.76470977922858,
+      "score": 90.29390678600844
+    },
+    {
+      "ticker": "3617.TW",
+      "name": "碩天",
+      "action": "☕持有",
+      "price": 217.5,
+      "change_pct": 0,
+      "regime": "多頭",
+      "dmpi": 5.756122698312057,
+      "rsi": 76.66666642814815,
+      "score": 87.37296368824906
     }
   ],
   "portfolio": [
-    {
-      "ticker": "2603.TW",
-      "name": "長榮",
-      "close": 229.5,
-      "cost": 0,
-      "qty": 0,
-      "pnl": 0,
-      "pnl_pct": 0,
-      "regime": "多頭",
-      "dmpi": 32.6,
-      "rsi": 64.9,
-      "has_sell": true
-    },
     {
       "ticker": "3545.TW",
       "name": "敦泰",
@@ -80,61 +67,78 @@
       "pnl": 0,
       "pnl_pct": 0,
       "regime": "盤整",
-      "dmpi": -2.1,
-      "rsi": 60.7,
+      "dmpi": 0.1,
+      "rsi": 55.3,
       "has_sell": false
     },
     {
       "ticker": "3576.TW",
       "name": "聯合再生",
-      "close": 18.149999618530273,
+      "close": 18.549999237060547,
       "cost": 0,
       "qty": 0,
       "pnl": 0,
       "pnl_pct": 0,
       "regime": "多頭",
-      "dmpi": 2.2,
-      "rsi": 49.5,
+      "dmpi": 4.9,
+      "rsi": 54.7,
       "has_sell": false
     },
     {
       "ticker": "2317.TW",
       "name": "鴻海",
-      "close": 299.5,
+      "close": 309.0,
       "cost": 0,
       "qty": 0,
       "pnl": 0,
       "pnl_pct": 0,
       "regime": "多頭",
-      "dmpi": -16.4,
-      "rsi": 78.7,
+      "dmpi": 18.4,
+      "rsi": 86.9,
       "has_sell": false
     },
     {
       "ticker": "2880.TW",
       "name": "華南金",
-      "close": 33.849998474121094,
+      "close": 36.400001525878906,
       "cost": 0,
       "qty": 0,
       "pnl": 0,
       "pnl_pct": 0,
       "regime": "盤整",
-      "dmpi": 33.3,
-      "rsi": 56.8,
+      "dmpi": 42.0,
+      "rsi": 68.1,
+      "has_sell": false
+    },
+    {
+      "ticker": "5871.TW",
+      "name": "中租-KY",
+      "close": 118.0,
+      "cost": 0,
+      "qty": 0,
+      "pnl": 0,
+      "pnl_pct": 0,
+      "regime": "盤整",
+      "dmpi": 56.7,
+      "rsi": 70.8,
+      "has_sell": false
+    },
+    {
+      "ticker": "1802.TW",
+      "name": "台玻",
+      "close": 71.5,
+      "cost": 0,
+      "qty": 0,
+      "pnl": 0,
+      "pnl_pct": 0,
+      "regime": "多頭",
+      "dmpi": -7.3,
+      "rsi": 58.4,
       "has_sell": false
     }
   ],
-  "sell_alerts": [
-    {
-      "ticker": "2603.TW",
-      "name": "長榮",
-      "regime": "多頭轉弱",
-      "dmpi": 34.5,
-      "rsi": 65.2,
-      "close": 230.0
-    }
-  ],
-  "total_candidates": 64,
-  "total_portfolio": 5,
-  "total_sell_alerts": 1
+  "sell_alerts": [],
+  "total_candidates": 79,
+  "total_portfolio": 6,
+  "total_sell_alerts": 0
 }

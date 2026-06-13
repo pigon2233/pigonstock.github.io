@@ -1,27 +1,27 @@
 {
-  "updated": "2026-06-12 13:11:30",
+  "updated": "2026-06-13 13:11:13",
   "candidates": [
     {
       "ticker": "6153.TW",
       "name": "嘉聯益",
       "action": "🔥新買",
-      "price": 22.299999237060547,
+      "price": 22.25,
       "change_pct": 0,
       "regime": "多頭",
-      "dmpi": 13.226422888297272,
-      "rsi": 67.02127020102793,
-      "score": 95.88678855585137
+      "dmpi": 14.77494161499995,
+      "rsi": 66.84491605801068,
+      "score": 95.11252919250003
     },
     {
-      "ticker": "4958.TW",
-      "name": "臻鼎-KY",
+      "ticker": "2610.TW",
+      "name": "華航",
       "action": "☕持有",
-      "price": 563.0,
+      "price": 20.399999618530273,
       "change_pct": 0,
-      "regime": "盤整",
-      "dmpi": 6.8227721548998455,
-      "rsi": 55.510249486132956,
-      "score": 93.94491132816812
+      "regime": "多頭",
+      "dmpi": 8.120212428027923,
+      "rsi": 67.03295944253402,
+      "score": 92.0444557477658
     },
     {
       "ticker": "3576.TW",
@@ -30,71 +30,71 @@
       "price": 19.799999237060547,
       "change_pct": 0,
       "regime": "多頭",
-      "dmpi": 21.747210241539545,
+      "dmpi": 22.09088585223812,
       "rsi": 52.26129987313811,
-      "score": 91.62639487923022
+      "score": 91.45455707388095
     },
     {
-      "ticker": "2610.TW",
-      "name": "華航",
+      "ticker": "1708.TW",
+      "name": "東鹼",
       "action": "☕持有",
-      "price": 20.450000762939453,
+      "price": 48.0,
       "change_pct": 0,
       "regime": "多頭",
-      "dmpi": 9.660090501512826,
-      "rsi": 67.3913050009668,
-      "score": 89.96849559863603
+      "dmpi": 4.421658823851461,
+      "rsi": 68.95196761993292,
+      "score": 89.84455049289944
     },
     {
-      "ticker": "1605.TW",
-      "name": "華新",
+      "ticker": "9904.TW",
+      "name": "寶成",
       "action": "☕持有",
-      "price": 37.70000076293945,
+      "price": 26.649999618530273,
       "change_pct": 0,
-      "regime": "盤整",
-      "dmpi": 8.605815661781346,
-      "rsi": 50.67775419474327,
-      "score": 86.66301372725897
+      "regime": "多頭",
+      "dmpi": 7.7558893045565345,
+      "rsi": 63.88887757401088,
+      "score": 88.41301351425363
     }
   ],
   "portfolio": [
     {
       "ticker": "2376.TW",
       "name": "技嘉",
-      "close": 344.0,
+      "close": 342.0,
       "cost": 0,
       "qty": 0,
       "pnl": 0,
       "pnl_pct": 0,
       "regime": "盤整",
-      "dmpi": -2.6,
-      "rsi": 52.3,
+      "dmpi": -3.1,
+      "rsi": 51.7,
       "has_sell": false
     },
     {
       "ticker": "2317.TW",
       "name": "鴻海",
-      "close": 262.5,
+      "close": 260.5,
       "cost": 0,
       "qty": 0,
       "pnl": 0,
       "pnl_pct": 0,
       "regime": "盤整",
-      "dmpi": -1.7,
-      "rsi": 50.6,
+      "dmpi": -2.8,
+      "rsi": 49.8,
       "has_sell": false
     },
     {
       "ticker": "5871.TW",
       "name": "中租-KY",
-      "close": 121.0,
+      "close": 121.5,
       "cost": 0,
       "qty": 0,
       "pnl": 0,
       "pnl_pct": 0,
       "regime": "多頭",
-      "dmpi": 22.1,
-      "rsi": 72.2,
+      "dmpi": 26.4,
+      "rsi": 73.6,
       "has_sell": false
     },
     {
@@ -106,26 +106,39 @@
       "pnl": 0,
       "pnl_pct": 0,
       "regime": "多頭",
-      "dmpi": 1.4,
+      "dmpi": 0.7,
       "rsi": 64.0,
       "has_sell": false
     },
     {
       "ticker": "2722.TW",
       "name": "夏都",
-      "close": 23.200000762939453,
+      "close": 23.049999237060547,
       "cost": 0,
       "qty": 0,
       "pnl": 0,
       "pnl_pct": 0,
       "regime": "盤整",
-      "dmpi": 35.3,
-      "rsi": 60.7,
+      "dmpi": 24.2,
+      "rsi": 58.3,
+      "has_sell": false
+    },
+    {
+      "ticker": "4958.TW",
+      "name": "臻鼎-KY",
+      "close": 552.0,
+      "cost": 0,
+      "qty": 0,
+      "pnl": 0,
+      "pnl_pct": 0,
+      "regime": "盤整",
+      "dmpi": 0.8,
+      "rsi": 54.0,
       "has_sell": false
     }
   ],
   "sell_alerts": [],
-  "total_candidates": 68,
-  "total_portfolio": 5,
+  "total_candidates": 64,
+  "total_portfolio": 6,
   "total_sell_alerts": 0
 }

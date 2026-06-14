@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-13 13:11:13",
+  "updated": "2026-06-14 13:11:30",
   "candidates": [
     {
       "ticker": "6153.TW",
@@ -135,10 +135,36 @@
       "dmpi": 0.8,
       "rsi": 54.0,
       "has_sell": false
+    },
+    {
+      "ticker": "CMPS",
+      "name": "",
+      "close": 12.079999923706055,
+      "cost": 0,
+      "qty": 0,
+      "pnl": 0,
+      "pnl_pct": 0,
+      "regime": "盤整",
+      "dmpi": 5.7,
+      "rsi": 51.7,
+      "has_sell": false
+    },
+    {
+      "ticker": "IONQ",
+      "name": "",
+      "close": 57.849998474121094,
+      "cost": 0,
+      "qty": 0,
+      "pnl": 0,
+      "pnl_pct": 0,
+      "regime": "盤整",
+      "dmpi": 0.7,
+      "rsi": 43.1,
+      "has_sell": false
     }
   ],
   "sell_alerts": [],
   "total_candidates": 64,
-  "total_portfolio": 6,
+  "total_portfolio": 8,
   "total_sell_alerts": 0
 }
